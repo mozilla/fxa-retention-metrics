@@ -11,10 +11,6 @@ from nbformat.v4.nbbase import (
 myFile = open('../scripts/retention_events_signed.py', 'r')
 fileContent = myFile.read()
 
-# some random base64-encoded *text*
-png = encodestring(os.urandom(5)).decode('ascii')
-jpeg = encodestring(os.urandom(6)).decode('ascii')
-
 cells = []
 cells.append(new_markdown_cell(
     source='Some NumPy Examples',
