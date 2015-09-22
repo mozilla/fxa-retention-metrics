@@ -1,5 +1,4 @@
 # fxa-retention-ipynb
-===============
 
 ## Dependencies
 
@@ -39,3 +38,8 @@ SPARK_LOCAL_IP="127.0.0.1" IPYTHON_OPTS="notebook" ./pyspark --packages com.data
 ```
 After Spark loads you will be able to navigate to Spark Web UI and upload one of the `.ipynb` notebooks.
 Look for `The IPython Notebook is running at` message in the terminal.
+
+## Demo Graph
+![](http://i.imgur.com/KbOZexO.jpg)
+
+Gist Source: https://gist.github.com/vladikoff/9d2df4558299cf9c1795
