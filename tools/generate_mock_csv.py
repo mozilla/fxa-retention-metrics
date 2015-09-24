@@ -1,7 +1,9 @@
+import os, sys
+sys.path.append(os.path.realpath(os.curdir))
+
 from datetime import date, timedelta
 import csv
 from tools.csv_random import random_event, random_service, random_date_range, random_uid
-
 
 class GenerateMockCsv:
     """
@@ -44,5 +46,7 @@ if __name__ == '__main__':
     for x in range(2, 14):
         starting_week = last_monday - timedelta(days=7 * x)
         formatted_week = starting_week.strftime('%Y-%m-%d')
-        mock_csv = GenerateMockCsv('./out/events-' + formatted_week + '.csv', starting_week, 14 - x)
+        tool_dir = os.path.dirname(os.path.abspath(__file__))
+
+        mock_csv = GenerateMockCsv(os.path.join(tool_dir, 'out', 'events-' + formatted_week + '.csv'), starting_week, 14 - x)
         mock_csv.write_csv()

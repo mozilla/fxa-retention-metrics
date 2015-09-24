@@ -1,3 +1,4 @@
 .ipynb_checkpoints
 /spark-1*
 *.pyc
+/local

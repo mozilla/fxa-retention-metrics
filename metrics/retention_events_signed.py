@@ -5,21 +5,27 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 # Only initialize Spark if testing locally
 # Otherwise it should be already running within Spark
-if os.environ.has_key('FXA_SPARK_TESTING'):
+try:
+    from pyspark import SparkContext
+except ImportError:
     import spark_env
 
 from pyspark import SparkContext
 from pyspark.sql import SQLContext, Row
 
+IN_IPYTHON = True
+
 try:
     __IPYTHON__
 except NameError:
+    IN_IPYTHON = False
     sc = SparkContext('local')
     print "Not in IPython, creating SparkContext manually"
 
 
 def week_file(week):
-    return '../tools/out/events-' + week + '.csv'
+    event_storage = os.path.join('___EVENT_STORAGE___', 'events-' + week + '.csv')
+    return event_storage
 
 # sc will be global in IPython
 sqlContext = SQLContext(sc)
@@ -60,19 +66,23 @@ for x in range(0, len(WEEKS)):
             out_data[x][idx] = percentage
         idx += 1
 
-df = pd.DataFrame(out_data, index=week_range, columns=WEEKS)
-sns.set(style='white')
-plt.figure(figsize=(14, 12))
-plt.title('User Retention based on "account.signed"')
-sns.heatmap(df, annot=True, fmt='d', yticklabels=week_range, xticklabels=range(0, 12))
-# Rotate labels
-locs, labels = plt.yticks()
-plt.setp(labels, rotation=0)
-# Set axis font
-font = {
-    'weight': 'bold',
-    'size': 22
-}
-# Label axis
-plt.ylabel('Starting Week', **font)
-plt.xlabel('Retention Weeks', **font)
+df = pd.DataFrame(out_data, index=week_range, columns=range(0, 12))
+
+if IN_IPYTHON:
+    sns.set(style='white')
+    plt.figure(figsize=(14, 12))
+    plt.title('User Retention based on "account.signed"')
+    sns.heatmap(df, annot=True, fmt='d', yticklabels=week_range, xticklabels=range(0, 12))
+    # Rotate labels
+    locs, labels = plt.yticks()
+    plt.setp(labels, rotation=0)
+    # Set axis font
+    font = {
+        'weight': 'bold',
+        'size': 22
+    }
+    # Label axis
+    plt.ylabel('Starting Week', **font)
+    plt.xlabel('Retention Weeks', **font)
+else:
+    print df
