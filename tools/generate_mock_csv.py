@@ -23,7 +23,7 @@ class GenerateMockCsv:
             'uid'
         ]
 
-        with open(self.target_file, 'wb') as csv_file:
+        with open(self.target_file, 'w+') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(headers)
 
