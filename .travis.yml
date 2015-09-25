@@ -10,4 +10,6 @@ before_install:
   - echo "Before Install"
 
 script:
+  - make spark_install
   - python tools/generate_mock_csv.py
+  - python metrics/retention_events_signed.py

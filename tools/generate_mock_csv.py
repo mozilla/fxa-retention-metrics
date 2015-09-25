@@ -27,7 +27,7 @@ class GenerateMockCsv:
             writer = csv.writer(csv_file)
             writer.writerow(headers)
 
-            for x in range(0, 5000):
+            for x in range(0, 1000):
                 userAgent = 'Mozilla/5.0 (Windows NT 6.0; rv:40.0) Gecko/20100101 Firefox/40.0'
 
                 event = [
@@ -43,7 +43,7 @@ class GenerateMockCsv:
 if __name__ == '__main__':
     today = date.today()
     last_monday = today + timedelta(days=-today.weekday(), weeks=1)
-    for x in range(2, 14):
+    for x in range(1, 14):
         starting_week = last_monday - timedelta(days=7 * x)
         formatted_week = starting_week.strftime('%Y-%m-%d')
         tool_dir = os.path.dirname(os.path.abspath(__file__))

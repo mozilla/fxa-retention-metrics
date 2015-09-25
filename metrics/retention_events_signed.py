@@ -25,6 +25,8 @@ except NameError:
 
 def week_file(week):
     event_storage = os.path.join('___EVENT_STORAGE___', 'events-' + week + '.csv')
+    if not os.path.isfile(event_storage):
+        event_storage = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'tools', 'out', 'events-' + week + '.csv')
     return event_storage
 
 # sc will be global in IPython
@@ -47,7 +49,7 @@ for x in range(0, len(WEEKS)):
     for week in WEEKS[x:]:
         df = sqlContext.load(source='com.databricks.spark.csv', header='true', path=week_file(week))
         table_name = 'week' + week.replace('-', '_')
-        df.registerAsTable(table_name)
+        df.registerTempTable(table_name)
 
         signed_events = sqlContext.sql("SELECT uid FROM " + table_name + " WHERE event = 'account.signed'")
 
