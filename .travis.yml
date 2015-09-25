@@ -13,7 +13,7 @@ before_install:
   - conda update --yes conda
 
 install:
-  - conda install --yes python=$TRAVIS_PYTHON_VERSION numpy pandas
+  - conda install --yes python=2.7 numpy pandas
 script:
   - make spark_install
   - python tools/generate_mock_csv.py
