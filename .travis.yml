@@ -5,9 +5,11 @@ sudo: false
 python:
   - "2.7"
 
+virtualenv:
+  system_site_packages: true
 
 before_install:
-  - echo "Before Install"
+  - sudo apt-get install -qq python-numpy python-scipy
 
 script:
   - make spark_install
