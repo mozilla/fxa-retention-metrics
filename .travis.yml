@@ -5,5 +5,9 @@ sudo: false
 python:
   - "2.7"
 
+
+before_install:
+  - echo "Before Install"
+
 script:
   - python tools/generate_mock_csv.py
