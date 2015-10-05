@@ -26,6 +26,7 @@ except NameError:
 def week_file(week):
     event_storage = os.path.join('___EVENT_STORAGE___', 'events-' + week + '.csv')
     if not os.path.isfile(event_storage):
+        print 'Failed to find:' + event_storage
         event_storage = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'tools', 'out', 'events-' + week + '.csv')
     return event_storage
 
