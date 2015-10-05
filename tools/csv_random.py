@@ -39,7 +39,10 @@ def random_service():
 
 def random_date_range(start):
     end = start + timedelta(weeks=1)
-    return start + timedelta(seconds=randint(0, int((end - start).total_seconds())))
+
+    rand_date = start + timedelta(seconds=randint(0, int((end - start).total_seconds())))
+
+    return int(rand_date.strftime("%s"));
 
 
 def random_uid(week_number):

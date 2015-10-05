@@ -16,11 +16,13 @@ class GenerateMockCsv:
 
     def write_csv(self):
         headers = [
+            'ts',
+            'user_agent_browser',
+            'user_agent_version',
+            'user_agent_os',
+            'hashed_uid',
             'event',
-            'userAgent',
             'service',
-            'Timestamp',
-            'uid'
         ]
 
         with open(self.target_file, 'w+') as csv_file:
@@ -28,14 +30,14 @@ class GenerateMockCsv:
             writer.writerow(headers)
 
             for x in range(0, 1000):
-                userAgent = 'Mozilla/5.0 (Windows NT 6.0; rv:40.0) Gecko/20100101 Firefox/40.0'
-
                 event = [
-                    random_event(),
-                    userAgent,
-                    random_service(),
                     random_date_range(starting_week),
-                    random_uid(self.week_number)
+                    'Firefox',
+                    '40',
+                    'Windows 7',
+                    random_uid(self.week_number),
+                    random_event(),
+                    random_service(),
                 ]
 
                 writer.writerow(event)
