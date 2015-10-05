@@ -1,7 +1,7 @@
 import os, sys
 sys.path.append(os.path.realpath(os.curdir))
 
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 import csv
 from tools.csv_random import random_event, random_service, random_date_range, random_uid
 
@@ -43,7 +43,8 @@ class GenerateMockCsv:
                 writer.writerow(event)
 
 if __name__ == '__main__':
-    today = date.today()
+    #today = date.today()
+    today = datetime.strptime('2015-09-28', '%Y-%m-%d').date()
     last_monday = today + timedelta(days=-today.weekday(), weeks=1)
     for x in range(1, 14):
         starting_week = last_monday - timedelta(days=7 * x)
