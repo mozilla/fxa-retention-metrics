@@ -1,5 +1,5 @@
 import os
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn
@@ -31,10 +31,12 @@ def week_file(week):
 
 # sc will be global in IPython
 sqlContext = SQLContext(sc)
-today = date.today()
+#today = date.today()
+today = datetime.strptime('2015-09-28', '%Y-%m-%d').date()
 last_monday = today - timedelta(days=-today.weekday(), weeks=1)
 week_range = pd.date_range(end=last_monday, periods=12, freq='W-MON')
 
+# TODO for now: from events-2015-06-15.csv to events-2015-09-21.csv
 WEEKS = week_range.map(lambda x: x.strftime('%Y-%m-%d'))
 
 out_data = []
