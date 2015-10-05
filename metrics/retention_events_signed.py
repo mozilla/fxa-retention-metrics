@@ -51,9 +51,9 @@ for x in range(0, len(WEEKS)):
         table_name = 'week' + week.replace('-', '_')
         df.registerTempTable(table_name)
 
-        signed_events = sqlContext.sql("SELECT uid FROM " + table_name + " WHERE event = 'account.signed'")
+        signed_events = sqlContext.sql("SELECT hashed_uid FROM " + table_name + " WHERE event = 'account.signed'")
 
-        new_uids = signed_events.map(lambda p: p.uid).distinct()
+        new_uids = signed_events.map(lambda p: p.hashed_uid).distinct()
 
         if not saved_uids:
             saved_uids = new_uids
