@@ -7,7 +7,7 @@ books_dir = os.path.dirname(os.path.abspath(__file__))
 dev_event_path = os.path.join(books_dir, '..', 'tools', 'out')
 
 # prod event storage
-prod_event_path = 's3n://telemetry-private-analysis/fxa-retention/data/'
+prod_event_path = 's3n://net-mozaws-prod-us-west-2-pipeline-analysis/fxa-retention/data/'
 
 dev_book = ConvertToBook(
     script_file=os.path.join(books_dir, '..', 'metrics', 'retention_events_signed.py'),

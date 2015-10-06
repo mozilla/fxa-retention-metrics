@@ -25,7 +25,10 @@ except NameError:
 
 def week_file(week):
     event_storage = os.path.join('___EVENT_STORAGE___', 'events-' + week + '.csv')
-    if not os.path.isfile(event_storage):
+
+    # if not ipython that probably means you are not running this on a Spark Cluster
+    # the telemetry spark cluster only supports uploading a ipynb.
+    if not IN_IPYTHON:
         print 'Failed to find:' + event_storage
         event_storage = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'tools', 'out', 'events-' + week + '.csv')
     return event_storage
@@ -50,13 +53,14 @@ for x in range(0, len(WEEKS)):
 
     idx = 0
     for week in WEEKS[x:]:
-        df = sqlContext.load(source='com.databricks.spark.csv', header='true', path=week_file(week))
+        df = sqlContext.load(source='com.databricks.spark.csv', header='false', path=week_file(week))
         table_name = 'week' + week.replace('-', '_')
         df.registerTempTable(table_name)
 
-        signed_events = sqlContext.sql("SELECT hashed_uid FROM " + table_name + " WHERE event = 'account.signed'")
+        # TODO: there are no csv headers, so have to use index based columns
+        signed_events = sqlContext.sql("SELECT C4 FROM " + table_name + " WHERE C5 = 'account.signed'")
 
-        new_uids = signed_events.map(lambda p: p.hashed_uid).distinct()
+        new_uids = signed_events.map(lambda p: p.C4).distinct()
 
         if not saved_uids:
             saved_uids = new_uids
