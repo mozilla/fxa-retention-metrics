@@ -38,11 +38,12 @@ sqlContext = SQLContext(sc)
 #today = date.today()
 today = datetime.strptime('2015-09-28', '%Y-%m-%d').date()
 last_monday = today - timedelta(days=-today.weekday(), weeks=1)
-week_range = pd.date_range(end=last_monday, periods=12, freq='W-MON')
+week_range = pd.date_range(end=last_monday, periods=15, freq='W-MON')
 
 # TODO for now: from events-2015-06-15.csv to events-2015-09-21.csv
 WEEKS = week_range.map(lambda x: x.strftime('%Y-%m-%d'))
 
+windows_platforms = "(C3 = 'Windows 7' OR C3 = 'Windows 8' OR C3 = 'Windows 8.1' OR C3 = 'Windows Vista' OR C3 = 'Windows XP' OR C3 = 'Windows 10')"
 out_data = []
 for x in range(0, len(WEEKS)):
     out_data.append([0] * len(WEEKS))
@@ -59,14 +60,14 @@ for x in range(0, len(WEEKS)):
 
         if not saved_uids:
             # TODO: there are no csv headers, so have to use index based columns
-            signed_events = sqlContext.sql("SELECT C4 FROM " + table_name + " WHERE C5 = 'account.created' AND C3 = 'Linux'")
+            signed_events = sqlContext.sql("SELECT C4 FROM " + table_name + " WHERE C5 = 'account.created' AND " + windows_platforms)
             new_uids = signed_events.map(lambda p: p.C4).distinct()
 
             saved_uids = new_uids
             saved_uids_count = int(new_uids.count())
             out_data[x][idx] = 100
         else:
-            created_events = sqlContext.sql("SELECT C4 FROM " + table_name + " WHERE C5 = 'account.signed' AND C3 = 'Linux'")
+            created_events = sqlContext.sql("SELECT C4 FROM " + table_name + " WHERE C5 = 'account.signed' AND " + windows_platforms)
             new_uids_created_events = created_events.map(lambda p: p.C4).distinct()
 
             retention_uids = saved_uids.intersection(new_uids_created_events)
@@ -77,13 +78,13 @@ for x in range(0, len(WEEKS)):
             out_data[x][idx] = percentage
         idx += 1
 
-df = pd.DataFrame(out_data, index=week_range, columns=range(0, 12))
+df = pd.DataFrame(out_data, index=week_range, columns=range(0, 15))
 
 if IN_IPYTHON:
     seaborn.set(style='white')
     plt.figure(figsize=(14, 12))
-    plt.title('User Retention Linux based on "account.created" and then "account.signed"')
-    seaborn.heatmap(df, annot=True, fmt='d', yticklabels=week_range, xticklabels=range(0, 12))
+    plt.title('User Retention Windows based on "account.created" and then "account.signed"')
+    seaborn.heatmap(df, annot=True, fmt='d', yticklabels=week_range, xticklabels=range(0, 15))
     # Rotate labels
     locs, labels = plt.yticks()
     plt.setp(labels, rotation=0)
