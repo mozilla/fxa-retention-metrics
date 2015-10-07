@@ -18,6 +18,7 @@ install:
 script:
   - make spark_install
   - export SPARK_HOME="${PWD}"/spark-1.3.1-bin-hadoop2.6
-  - cp tests/log4j.properties spark-1.3.1-bin-hadoop2.6/conf/log4j.properties
+  - cp tools/log4j.properties spark-1.3.1-bin-hadoop2.6/conf/log4j.properties
   - python tools/generate_mock_csv.py
   - python metrics/retention_events_signed.py
+  - python metrics/retention_account_created.py
