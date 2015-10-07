@@ -15,19 +15,19 @@ class GenerateMockCsv:
         self.target_file = target_file
 
     def write_csv(self):
-        headers = [
-            'ts',
-            'user_agent_browser',
-            'user_agent_version',
-            'user_agent_os',
-            'hashed_uid',
-            'event',
-            'service',
-        ]
+        # headers = [
+        #     'ts',
+        #     'user_agent_browser',
+        #     'user_agent_version',
+        #     'user_agent_os',
+        #     'hashed_uid',
+        #     'event',
+        #     'service',
+        # ]
 
         with open(self.target_file, 'w+') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow(headers)
+            #writer.writerow(headers)
 
             for x in range(0, 1000):
                 event = [
