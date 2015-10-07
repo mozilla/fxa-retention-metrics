@@ -11,17 +11,17 @@ INSTALL = ARCHFLAGS=$(ARCHFLAGS) $(ENV)/bin/pip install
 .PHONY: all
 all: build
 
-.PHONY: build
-build: | $(ENV)/COMPLETE
-$(ENV)/COMPLETE: requirements.txt
-	$(VIRTUALENV) --no-site-packages $(ENV)
-	$(INSTALL) -r requirements.txt
-	touch $(ENV)/COMPLETE
-
 .PHONY: spark_install
 spark_install:
 	wget http://apache.mirror.gtcomm.net/spark/spark-1.3.1/spark-1.3.1-bin-hadoop2.6.tgz
 	tar -xzf spark-1.3.1-bin-hadoop2.6.tgz
+	export SPARK_HOME=$(pwd)/spark-1.3.1-bin-hadoop2.6;
+
+.PHONY: install
+install:
+	make spark_install
+	$(VIRTUALENV) --no-site-packages $(ENV)
+	$(INSTALL) -r requirements.txt
 
 .PHONY: clean
 clean:

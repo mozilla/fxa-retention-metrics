@@ -15,19 +15,8 @@ class GenerateMockCsv:
         self.target_file = target_file
 
     def write_csv(self):
-        # headers = [
-        #     'ts',
-        #     'user_agent_browser',
-        #     'user_agent_version',
-        #     'user_agent_os',
-        #     'hashed_uid',
-        #     'event',
-        #     'service',
-        # ]
-
         with open(self.target_file, 'w+') as csv_file:
             writer = csv.writer(csv_file)
-            #writer.writerow(headers)
 
             for x in range(0, 1000):
                 event = [
@@ -43,13 +32,14 @@ class GenerateMockCsv:
                 writer.writerow(event)
 
 if __name__ == '__main__':
-    #today = date.today()
-    today = datetime.strptime('2015-09-28', '%Y-%m-%d').date()
+    INTERVALS = 16
+    # today = date.today()
+    today = datetime.strptime('2015-09-21', '%Y-%m-%d').date()
     last_monday = today + timedelta(days=-today.weekday(), weeks=1)
-    for x in range(1, 14):
+    for x in range(1, INTERVALS):
         starting_week = last_monday - timedelta(days=7 * x)
         formatted_week = starting_week.strftime('%Y-%m-%d')
         tool_dir = os.path.dirname(os.path.abspath(__file__))
 
-        mock_csv = GenerateMockCsv(os.path.join(tool_dir, 'out', 'events-' + formatted_week + '.csv'), starting_week, 14 - x)
+        mock_csv = GenerateMockCsv(os.path.join(tool_dir, 'out', 'events-' + formatted_week + '.csv'), starting_week, INTERVALS - x)
         mock_csv.write_csv()

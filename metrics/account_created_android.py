@@ -82,7 +82,7 @@ df = pd.DataFrame(out_data, index=week_range, columns=range(0, 12))
 if IN_IPYTHON:
     seaborn.set(style='white')
     plt.figure(figsize=(14, 12))
-    plt.title('User Retention MAC based on "account.created" and then "account.signed"')
+    plt.title('User Retention Android based on "account.created" and then "account.signed"')
     seaborn.heatmap(df, annot=True, fmt='d', yticklabels=week_range, xticklabels=range(0, 12))
     # Rotate labels
     locs, labels = plt.yticks()

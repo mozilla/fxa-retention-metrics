@@ -9,16 +9,14 @@
 * Python 2.7
 
 ## Local Development Setup
-1. Setup `virtualenv` by running `make build`
+1. Git Clone the project and Download Spark 1.3.1 and extract it into this project directory:
+```
+git clone https://github.com/vladikoff/fxa-retention-ipynb.git
+cd fxa-retention-ipynb
+make install
+
+```
 1. Run `source ./local/bin/activate` in your terminal
-1. Download Spark 1.3.1 and extract it into this project directory:
-```
-wget http://apache.mirror.gtcomm.net/spark/spark-1.3.1/spark-1.3.1-bin-hadoop2.6.tgz
-```
-1. Set `SPARK_HOME`, example in your terminal:
-```
-export SPARK_HOME=<project_directory>/spark-1.3.1-bin-hadoop2.6
-```
 1. Run the csv script to generate random data:
 ```
 python tools/generate_mock_csv.py
@@ -35,6 +33,7 @@ python metrics/retention_events_signed.py
 
 ### Run Spark locally:
 ```
+cd spark-1.3.1-bin-hadoop2.6/bin
 SPARK_LOCAL_IP="127.0.0.1" IPYTHON_OPTS="notebook" ./pyspark --packages com.databricks:spark-csv_2.10:1.2.0
 ```
 After Spark loads you will be able to navigate to Spark Web UI, click 'Upload' and select one of the `.ipynb` notebooks in `/ipynb/dev`.

@@ -2,3 +2,4 @@ nbformat==4.0.0
 seaborn==0.6.0
 jupyter==1.0.0
 py4j==0.8.2.1
+matplotlib==1.4.3
