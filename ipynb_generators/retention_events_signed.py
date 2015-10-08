@@ -26,3 +26,23 @@ prod_book = ConvertToBook(
 )
 
 prod_book.write_book()
+
+# Android
+
+dev_book = ConvertToBook(
+    script_file=os.path.join(books_dir, '..', 'metrics', 'retention_events_signed_android.py'),
+    book_title='User Retention using accounts.signed events DEVELOPMENT on ANDROID',
+    book_target_path=os.path.join(books_dir, '..', 'ipynb', 'dev'),
+    event_storage=dev_event_path
+)
+
+dev_book.write_book()
+
+prod_book = ConvertToBook(
+    script_file=os.path.join(books_dir, '..', 'metrics', 'retention_events_signed_android.py'),
+    book_title='User Retention using accounts.signed events on ANDROID',
+    book_target_path=os.path.join(books_dir, '..', 'ipynb', 'prod'),
+    event_storage=prod_event_path
+)
+
+prod_book.write_book()

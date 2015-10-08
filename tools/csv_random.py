@@ -28,14 +28,25 @@ def random_event():
         'account.login',
         'avatar.get',
         'avatar.get',
-        'avatar.get',
-        'avatar.get',
+        'avatar.post',
+        'avatar.post',
     ])
 
 
 def random_service():
-    return random.choice(['', '', '', '', '', '', '', '', '', '', 'sync', 'sync', 'sync', 'sync', 'foo', 'bar'])
+    return random.choice(['', '', '', '', '', '', '', '', '', '', 'sync', 'sync', 'sync', 'sync', 'f00', 'f11'])
 
+
+def random_browser():
+    return random.choice(['Firefox', 'Firefox', 'Firefox', 'Firefox', 'Firefox', 'Firefox', 'Firefox', 'Chrome', 'Safari'])
+
+
+def random_version():
+    return random.choice(['37', '38', '39', '40', '41', '42'])
+
+
+def random_os():
+    return random.choice(['Windows 7', 'Macintosh', 'Windows 8', 'Windows 8.1', 'Windows 10', 'Macintosh', 'Android', 'Linux'])
 
 def random_date_range(start):
     end = start + timedelta(weeks=1)

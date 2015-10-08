@@ -1,5 +1,6 @@
 import hashlib
-import os
+import os, sys
+sys.path.append(os.path.realpath(os.curdir))
 
 from unittest import TestCase
 from tools.convert_to_book import ConvertToBook

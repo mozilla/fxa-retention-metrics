@@ -3,7 +3,7 @@ sys.path.append(os.path.realpath(os.curdir))
 
 from datetime import date, timedelta, datetime
 import csv
-from tools.csv_random import random_event, random_service, random_date_range, random_uid
+from tools.csv_random import random_event, random_service, random_os, random_version, random_date_range, random_uid, random_browser
 
 class GenerateMockCsv:
     """
@@ -21,9 +21,9 @@ class GenerateMockCsv:
             for x in range(0, 1000):
                 event = [
                     random_date_range(starting_week),
-                    'Firefox',
-                    '40',
-                    'Windows 7',
+                    random_browser(),
+                    random_version(),
+                    random_os(),
                     random_uid(self.week_number),
                     random_event(),
                     random_service(),
