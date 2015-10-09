@@ -47,7 +47,7 @@ GRAPHS.append({
 GRAPHS.append({
     "COHORT_QUERY": "SELECT C4 FROM %s WHERE C5 = 'account.created' AND (C3 = 'Windows 8' OR C3 = 'Windows 8.1')",
     "REST_QUERY": "SELECT C4 FROM %s",
-    "TITLE": "'created' then did 'anything' - All Windows",
+    "TITLE": "'created' then did 'anything' - Windows 8 and 8.1",
     "FILE_NAME": 'created_then_anything_by_platform_windows_8'
 })
 
