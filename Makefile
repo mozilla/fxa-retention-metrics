@@ -23,6 +23,18 @@ install:
 	$(VIRTUALENV) --no-site-packages $(ENV)
 	$(INSTALL) -r requirements.txt
 
+.PHONY: build
+build:
+	./build.sh
+
+.PHONY: spark
+spark:
+	SPARK_LOCAL_IP="127.0.0.1" IPYTHON_OPTS="notebook" ./spark-1.3.1-bin-hadoop2.6/bin/pyspark --packages com.databricks:spark-csv_2.10:1.2.0
+
+.PHONY: test
+test:
+	./test.sh
+
 .PHONY: clean
 clean:
 	rm -rf $(ENV)

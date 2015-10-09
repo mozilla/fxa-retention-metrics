@@ -29,14 +29,24 @@ python metrics/retention_events_signed.py
 1. Run the conversion script, e.g `python books/retention_events_signed.py`
 1. Upload your new `.ipynb` to a local Spark UI for testing or [telemetry-dash.mozilla.org](http://telemetry-dash.mozilla.org/)
 
-## Extras
+## Commands
 
-### Run Spark locally:
-```
-cd spark-1.3.1-bin-hadoop2.6/bin
-SPARK_LOCAL_IP="127.0.0.1" IPYTHON_OPTS="notebook" ./pyspark --packages com.databricks:spark-csv_2.10:1.2.0
-```
-After Spark loads you will be able to navigate to Spark Web UI, click 'Upload' and select one of the `.ipynb` notebooks in `/ipynb/dev`.
+### `make`
+
+Rebuild the books with changes made to files in `/ipynb_generators`.
+
+### `make test`
+
+Test the scripts.
+
+### `make install`
+
+Installs Spark and does other things to setup the project.
+
+### `make spark`
+
+Runs Spark locally to manually test if books in `/ipynb/dev/*` work.
+After Spark loads you will be able to navigate to Spark Web UI, navigate to `/ipynb/dev` using your browser.
 
 Open the notebook and run (>|) through all the cells to get a graph:
 ![](http://i.imgur.com/QhiFvd8.jpg)
