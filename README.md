@@ -1,6 +1,6 @@
-# fxa-retention-ipynb
+# fxa-retention-metrics
 
-[![Build Status](https://travis-ci.org/vladikoff/fxa-retention-ipynb.svg?branch=master)](https://travis-ci.org/vladikoff/fxa-retention-ipynb)
+[![Build Status](https://travis-ci.org/mozilla/fxa-retention-metrics.svg?branch=master)](https://travis-ci.org/mozilla/fxa-retention-metrics)
 
 ## Dependencies
 
@@ -11,8 +11,8 @@
 ## Local Development Setup
 1. Git Clone the project and Download Spark 1.3.1 and extract it into this project directory:
 ```
-git clone https://github.com/vladikoff/fxa-retention-ipynb.git
-cd fxa-retention-ipynb
+git clone https://github.com/mozilla/fxa-retention-metrics.git
+cd fxa-retention-metrics
 make install
 
 ```
