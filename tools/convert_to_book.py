@@ -30,16 +30,17 @@ class ConvertToBook:
             cells.append(new_code_cell(source='%matplotlib inline', execution_count=1))
 
         # add query
-        if specs["COHORT_QUERY"]:
+        if "COHORT_QUERY" in specs:
             cells.append(new_code_cell(source="COHORT_QUERY = \"" + specs["COHORT_QUERY"] + "\"", execution_count=1))
 
-        if specs["REST_QUERY"]:
+        if "COHORT_QUERY_SECONDARY" in specs:
+            cells.append(new_code_cell(source="COHORT_QUERY_SECONDARY = \"" + specs["COHORT_QUERY_SECONDARY"] + "\"", execution_count=1))
+
+        if "REST_QUERY" in specs:
             cells.append(new_code_cell(source="REST_QUERY = \"" + specs["REST_QUERY"] + "\"", execution_count=1))
 
-        if specs["TITLE"]:
+        if "TITLE" in specs:
             cells.append(new_code_cell(source="TITLE = \"" + specs["TITLE"] + "\"", execution_count=1))
-
-        if specs["TITLE"]:
             cells.append(new_code_cell(source="EVENT_STORAGE = \"" + self.event_storage + "\"", execution_count=1))
 
         # setup week ranges
