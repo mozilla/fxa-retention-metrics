@@ -34,7 +34,7 @@ def random_event():
 
 
 def random_service():
-    return random.choice(['', '', '', '', '', '', '', '', '', '', 'sync', 'sync', 'sync', 'sync', 'f00', 'f11'])
+    return random.choice(['', '', '', '', '', '', '', '', '', '', 'sync', 'sync', 'sync', 'sync', '749818d3f2e7857f', '7377719276ad44ee', 'a8b39c2b1cab722e', '0a42ac8a73be8762'])
 
 
 def random_browser():
