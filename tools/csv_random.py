@@ -38,7 +38,7 @@ def random_service():
 
 
 def random_browser():
-    return random.choice(['Firefox', 'Firefox', 'Firefox', 'Firefox', 'Firefox', 'Firefox', 'Firefox', 'Chrome', 'Safari'])
+    return random.choice(['Firefox', 'Firefox', 'Firefox', 'Firefox', 'Firefox', 'Firefox', 'Firefox', 'FxiOS', 'Chrome', 'Safari'])
 
 
 def random_version():
