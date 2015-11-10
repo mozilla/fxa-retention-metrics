@@ -32,9 +32,9 @@ class GenerateMockCsv:
                 writer.writerow(event)
 
 if __name__ == '__main__':
-    INTERVALS = 16
+    INTERVALS = 22
     # today = date.today()
-    today = datetime.strptime('2015-09-21', '%Y-%m-%d').date()
+    today = datetime.strptime('2015-11-08', '%Y-%m-%d').date()
     last_monday = today + timedelta(days=-today.weekday(), weeks=1)
     for x in range(1, INTERVALS):
         starting_week = last_monday - timedelta(days=7 * x)
