@@ -51,6 +51,16 @@ GRAPHS.append({
     "FILE_NAME": 'created_then_anything_by_platform_windows_8'
 })
 
+# FxiOS
+# special case, see https://github.com/mozilla-services/puppet-config/pull/1639/files#diff-2dc4fee1b6fdec50c40bbdef11693018R90
+GRAPHS.append({
+    "COHORT_QUERY": "SELECT C4 FROM %s WHERE C1 = 'FxiOS'",
+    "REST_QUERY": "SELECT C4 FROM %s",
+    "TITLE": "'anything' then did 'anything' - FxiOS",
+    "FILE_NAME": 'anything_then_anything_by_platform_fxios'
+})
+
+
 for g in GRAPHS:
     dev_book = ConvertToBook(
         script_file=GRAPH_TYPE,

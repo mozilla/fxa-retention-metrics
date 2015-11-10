@@ -8,7 +8,7 @@ try:
 except NameError:
     IN_IPYTHON = False
 
-today = datetime.strptime('2015-09-28', '%Y-%m-%d').date()
+today = datetime.strptime('2015-11-08', '%Y-%m-%d').date()
 last_monday = today - timedelta(days=-today.weekday(), weeks=1)
 
 WEEK_RANGE = pandas.date_range(end=last_monday, periods=15, freq='W-MON')
