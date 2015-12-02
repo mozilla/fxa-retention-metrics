@@ -7,5 +7,8 @@ python tests/test_convert_to_book.py
 python ipynb_generators/created_then_anything_by_platform.py
 python ipynb_generators/created_then_anything_by_firefox_version.py
 python ipynb_generators/signed_then_anything.py
+python ipynb_generators/weekly_created_percentage.py
+python ipynb_generators/weekly_login_percentage.py
 python graph_types/x_then_y.py
 python graph_types/x_with_y_then_z.py
+
