@@ -36,16 +36,16 @@ for x in range(0, len(WEEKS)):
         df.registerTempTable(table_name)
 
         if not saved_uids:
-            signed_events = sqlContext.sql(COHORT_QUERY % table_name)
-            new_uids = signed_events.map(lambda p: p.C4).distinct()
+            cohort_events = sqlContext.sql(COHORT_QUERY % table_name)
+            new_uids = cohort_events.map(lambda p: p.C4).distinct()
 
             saved_uids = new_uids
             saved_uids_count = int(new_uids.count())
             VOLUME_DATA[x][idx] = saved_uids_count
             OUT_DATA[x][idx] = 100
         else:
-            created_events = sqlContext.sql(REST_QUERY % table_name)
-            new_uids_created_events = created_events.map(lambda p: p.C4).distinct()
+            secondary_events = sqlContext.sql(REST_QUERY % table_name)
+            new_uids_created_events = secondary_events.map(lambda p: p.C4).distinct()
 
             retention_uids = saved_uids.intersection(new_uids_created_events)
             if saved_uids_count > 0:
