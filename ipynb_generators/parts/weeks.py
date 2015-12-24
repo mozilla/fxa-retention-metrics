@@ -8,11 +8,11 @@ try:
 except NameError:
     IN_IPYTHON = False
 
-today = datetime.strptime('2015-11-08', '%Y-%m-%d').date()
+today = date.today()
+# today = datetime.strptime('2015-11-08', '%Y-%m-%d').date()
 last_monday = today - timedelta(days=-today.weekday(), weeks=1)
 
 WEEK_RANGE = pandas.date_range(end=last_monday, periods=15, freq='W-MON')
-# TODO for now: from events-2015-06-15.csv to events-2015-09-21.csv
 WEEKS = WEEK_RANGE.map(lambda x: x.strftime('%Y-%m-%d'))
 
 if not IN_IPYTHON:

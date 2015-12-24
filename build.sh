@@ -8,3 +8,5 @@ python ipynb_generators/created_then_anything_by_firefox_version.py
 python ipynb_generators/created_then_anything_by_service.py
 python ipynb_generators/signed_then_anything.py
 python ipynb_generators/multi_device.py
+python ipynb_generators/weekly_created_percentage.py
+python ipynb_generators/weekly_login_percentage.py

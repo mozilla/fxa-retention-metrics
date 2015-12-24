@@ -30,6 +30,12 @@ class ConvertToBook:
             cells.append(new_code_cell(source='%matplotlib inline', execution_count=1))
 
         # add query
+        if "TOTAL_QUERY" in specs:
+            cells.append(new_code_cell(source="TOTAL_QUERY = \"" + specs["TOTAL_QUERY"] + "\"", execution_count=1))
+
+        if "CHUNK_QUERIES" in specs:
+            cells.append(new_code_cell(source="CHUNK_QUERIES = " + ('[%s]' % ', '.join(map(str, specs["CHUNK_QUERIES"]))), execution_count=1))
+
         if "COHORT_QUERY" in specs:
             cells.append(new_code_cell(source="COHORT_QUERY = \"" + specs["COHORT_QUERY"] + "\"", execution_count=1))
 
