@@ -10,7 +10,7 @@ except NameError:
 
 today = date.today()
 # today = datetime.strptime('2015-11-08', '%Y-%m-%d').date()
-last_monday = today - timedelta(days=-today.weekday(), weeks=1)
+last_monday = today - timedelta(days=-today.weekday(), weeks=2)
 
 WEEK_RANGE = pandas.date_range(end=last_monday, periods=15, freq='W-MON')
 WEEKS = WEEK_RANGE.map(lambda x: x.strftime('%Y-%m-%d'))
