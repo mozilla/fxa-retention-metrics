@@ -12,3 +12,4 @@ python ipynb_generators/weekly_created_percentage.py
 python ipynb_generators/weekly_login_percentage.py
 python ipynb_generators/weekly_created_percentage_by_service.py
 python ipynb_generators/weekly_login_percentage_by_service.py
+python ipynb_generators/weekly_created_vs_login_percentage.py
